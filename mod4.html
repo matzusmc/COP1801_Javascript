@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+</head>
+<body>
+    <h1>Tip Calculator</h1>
+    <label for="serviceAmount">Enter the dollar amount of the service (between $5.00 and $500.00):</label>
+    <input type="number" id="serviceAmount" step="0.01" min="5" max="500">
+    <br><br>
+    <label for="serviceQuality">Enter the quality of service (great, ok, or poor):</label>
+    <input type="text" id="serviceQuality">
+    <br><br>
+    <button onclick="calculateTip()">Calculate Tip</button>
+    <p id="result"></p>
+
+    <script>
+        // Function to verify if service quality input is valid
+        function isValidServiceQuality(quality) {
+            const validQualities = ["great", "ok", "poor"];
+            return validQualities.includes(quality.toLowerCase());
+        }
+
+        // Function to verify if service amount is within the valid range
+        function isValidServiceAmount(amount) {
+            return amount >= 5.0 && amount <= 500.0;
+        }
+
+        // Function to calculate the tip amount based on service quality
+        function calculateTipAmount(amount, quality) {
+            let tipPercentage;
+
+            switch (quality.toLowerCase()) {
+                case "great":
+                    tipPercentage = 0.20;
+                    break;
+                case "ok":
+                    tipPercentage = 0.15;
+                    break;
+                case "poor":
+                    tipPercentage = 0.10;
+                    break;
+            }
+
+            return amount * tipPercentage;
+        }
+
+        // Main function to handle the calculation and display the result
+        function calculateTip() {
+            const serviceAmount = parseFloat(document.getElementById("serviceAmount").value);
+            const serviceQuality = document.getElementById("serviceQuality").value.toLowerCase();
+            const resultElement = document.getElementById("result");
+
+            if (!isValidServiceAmount(serviceAmount)) {
+                resultElement.textContent = "Invalid service amount. Please enter an amount between $5.00 and $500.00.";
+            } else if (!isValidServiceQuality(serviceQuality)) {
+                resultElement.textContent = "Invalid service quality. Please enter 'great', 'ok', or 'poor'.";
+            } else {
+                const tipAmount = calculateTipAmount(serviceAmount, serviceQuality);
+                resultElement.textContent = `For a service amount of $${serviceAmount.toFixed(2)}, with "${serviceQuality}" quality, the recommended tip is $${tipAmount.toFixed(2)}.`;
+            }
+        }
+    </script>
+</body>
+</html>
