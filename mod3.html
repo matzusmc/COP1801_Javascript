@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Program</title>
+</head>
+<body>
+  <h2>Counting Odd and Even Numbers</h2>
+  <div id="counting"></div>
+
+  <h2>Do While Loop with User Input</h2>
+  <div id="doWhileLoop"></div>
+
+  <h2>Subjects Array</h2>
+  <div id="subjectsList"></div>
+  <div id="subjectsCommaSeparated"></div>
+
+  <script>
+    // Part 1: For loop to count from 0 to 10 and check if each number is odd or even
+    const countingDiv = document.getElementById("counting");
+    for (let i = 0; i <= 10; i++) {
+      let message = `Count ${i} is ${i % 2 === 0 ? "even" : "odd"}`;
+      let paragraph = document.createElement("p");
+      paragraph.textContent = message;
+      countingDiv.appendChild(paragraph);
+    }
+
+    // Part 2: Do While loop to display loop counter until it equals myNum
+    let myNum;
+    do {
+      myNum = parseInt(prompt("Enter a number between 5 and 20:"));
+    } while (isNaN(myNum) || myNum < 5 || myNum > 20);
+
+    const doWhileLoopDiv = document.getElementById("doWhileLoop");
+    let counter = 1;
+    do {
+      let paragraph = document.createElement("p");
+      paragraph.textContent = `Counter: ${counter}`;
+      doWhileLoopDiv.appendChild(paragraph);
+      counter++;
+    } while (counter <= myNum);
+
+    // Part 3: Array of subjects and displaying values
+    let subjects = ["Accounting", "Algebra", "Programming", "Art", "Data Analytics"];
+    const subjectsListDiv = document.getElementById("subjectsList");
+    const subjectsCommaSeparatedDiv = document.getElementById("subjectsCommaSeparated");
+
+    // Using forEach to display each subject in a readable format
+    subjects.forEach((subject) => {
+      let paragraph = document.createElement("p");
+      paragraph.textContent = subject;
+      subjectsListDiv.appendChild(paragraph);
+    });
+
+    // Displaying array values separated by commas in one statement
+    subjectsCommaSeparatedDiv.textContent = subjects.join(", ");
+  </script>
+</body>
+</html>
