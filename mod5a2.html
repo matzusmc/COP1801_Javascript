@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fictional Dog Description</title>
+    <style>
+        /* Optional styling for better presentation */
+        #dog-description {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Placeholder for the dog's description -->
+<div id="dog-description"></div>
+
+<script>
+    /* Constructor function for creating dog objects */
+    function Dog(name, breed, tvProgram, notes, mySound, canTalk) {
+        // Assign properties
+        this.name = name;
+        this.breed = breed;
+        this.tvProgram = tvProgram;
+        this.notes = notes;
+        this.mySound = mySound;
+        this.canTalk = canTalk;
+
+        // Add the myGreeting method as one of the properties
+        this.myGreeting = function() {
+            return `Hello, my name is ${this.name}, ${this.mySound} I starred in the TV show ${this.tvProgram}. My character was a ${this.breed}. ${this.notes}`;
+        };
+    }
+
+    // Create an instance of Dog called myDogConst
+    var myDogConst = new Dog(
+        "Brian",
+        "White Labrador Retriever",
+        "Family Guy",
+        "I am family dog and equal family member in a tv show about the Griffins, a dysfunctional family.",
+        "I have a sophisticated voice and often provide witty commentary.",
+        true // canTalk is true because Brian can talk
+    );
+
+    // Display the dog's greeting on the web page
+    document.getElementById('dog-description').innerText = myDogConst.myGreeting();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fictional Dog Description</title>
+    <style>
+        /* Optional styling for better presentation */
+        #dog-description {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Placeholder for the dog's description -->
+<div id="dog-description"></div>
+
+<script>
+    // Define the dog object using an object literal
+    var dog = {
+        name: "Brian",
+        breed: "White Labrador Retriever",
+        tvProgram: "Family Guy",
+        notes: "I am the family dog and equal family member in a show about the Griffins, a dysfunctional family.",
+        mySound: "I have a sophisticated voice and often provide witty commentary."
+    };
+
+    /* Constructor function for creating dog objects and adding methods */
+    // Constructor function
+    function Dog(name, breed, tvProgram, notes, mySound) {
+        this.name = name;
+        this.breed = breed;
+        this.tvProgram = tvProgram;
+        this.notes = notes;
+        this.mySound = mySound;
+    }
+
+    // Add a describe method to the Dog prototype
+    Dog.prototype.describe = function() {
+        return `Hello, my name is ${this.name}, ${this.mySound} I starred in the TV show ${this.tvProgram}. My character was a ${this.breed}. ${this.notes}`;
+    };
+
+    // Create an instance of Dog using the properties from the object literal
+    var brian = new Dog(
+        dog.name,
+        dog.breed,
+        dog.tvProgram,
+        dog.notes,
+        dog.mySound
+    );
+
+    // Display the dog's description on the web page
+    document.getElementById('dog-description').innerText = brian.describe();
+</script>
+
+</body>
+</html>
