@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fictional Dog Description</title>
+    <style>
+        /* Optional styling for better presentation */
+        #dog-description {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-size: 18px;
+            white-space: pre-wrap; /* Preserve line breaks */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Placeholder for the dog's description -->
+<div id="dog-description"></div>
+
+<script>
+    /*-------------------- Constructor Function and Object Method --------------------*/
+    // Constructor function for creating dog objects
+    function Dog(name, breed, tvProgram, notes, mySound, canTalk) {
+        // Assign properties
+        this.name = name;
+        this.breed = breed;
+        this.tvProgram = tvProgram;
+        this.notes = notes;
+        this.mySound = mySound;
+        this.canTalk = canTalk;
+
+        // Add the myGreeting method as one of the properties
+        this.myGreeting = function() {
+            // Determine if the dog can talk
+            var talkAbility = this.canTalk ? "I can talk!" : "I cannot talk.";
+            // Return the greeting message
+            return `Hello, my name is ${this.name}, ${this.mySound} ${talkAbility} I starred in the TV show ${this.tvProgram}. My character was a ${this.breed}. ${this.notes}`;
+        };
+    }
+
+    /*-------------------- Creating Dog Objects --------------------*/
+    // Create an instance of Dog called myDogConst using the same information as before
+    var myDogConst = new Dog(
+        "Brian",
+        "White Labrador Retriever",
+        "Family Guy",
+        "The family dog and equal family member in a show about the Griffins, a dysfunctional family.",
+        "I have a sophisticated voice and often provide witty commentary.",
+        true // canTalk is true because Brian can talk
+    );
+
+    // Call the myGreeting method to display if the dog can talk (will be displayed later)
+
+    // Create two new dog objects from the fictional dogs Wikipedia site
+    var dog1 = new Dog(
+        "Scooby-Doo",
+        "Great Dane",
+        "Scooby-Doo, Where Are You!",
+        "ifelong companion of Shaggy Rogers; about a big dog and several teenage humans.",
+        "I say 'Scooby-Dooby-Doo!'",
+        true // Scooby-Doo can talk
+    );
+
+    var dog2 = new Dog(
+        "Jake",
+        "Bulldog (magical dog)",
+        "Adventure Time",
+        "Finn's best friend; about a 14-year-old boy and his dog with magical powers living in the post-apocalyptic Land of Ooo",
+        "I have a laid-back voice and can stretch into any shape.",
+        true // Jake can talk
+    );
+
+    /*-------------------- Displaying Properties Using for...in Loop --------------------*/
+    // Function to display properties and values of a dog object
+    function displayDogProperties(dog) {
+        var properties = "";
+        for (var prop in dog) {
+            // Exclude inherited properties and methods
+            if (dog.hasOwnProperty(prop) && typeof dog[prop] !== 'function') {
+                properties += prop + ": " + dog[prop] + "\n";
+            }
+        }
+        console.log("Properties of " + dog.name + ":\n" + properties);
+    }
+
+    // Display properties for each dog using the for...in loop
+    displayDogProperties(myDogConst);
+    displayDogProperties(dog1);
+    displayDogProperties(dog2);
+
+    /*-------------------- User Interaction --------------------*/
+    // Store the dogs in an array for easy access
+    var dogs = [myDogConst, dog1, dog2];
+
+    // Prompt the user to select one of the dogs by typing in one of the dog's names
+    var dogNames = dogs.map(function(dog) { return dog.name; }).join(", ");
+    var userSelection = prompt("Please select a dog by typing one of the following names: " + dogNames);
+
+    // Find the selected dog based on user input
+    var selectedDog = null;
+    for (var i = 0; i < dogs.length; i++) {
+        if (dogs[i].name.toLowerCase() === userSelection.toLowerCase()) {
+            selectedDog = dogs[i];
+            break;
+        }
+    }
+
+    /*-------------------- Displaying the Selected Dog's Information --------------------*/
+    if (selectedDog) {
+        // Use the dog's myGreeting method to retrieve the message
+        document.getElementById('dog-description').innerText = selectedDog.myGreeting();
+    } else {
+        // Display an error message if the dog doesn't exist
+        document.getElementById('dog-description').innerText = "Error: The dog you selected does not exist in our list.";
+    }
+</script>
+
+</body>
+</html>
